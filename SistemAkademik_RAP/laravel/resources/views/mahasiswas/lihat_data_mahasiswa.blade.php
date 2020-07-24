@@ -4,6 +4,7 @@
 	<div id="mahasiswa">
 		<h2>Data Mahasiswa</h2>
 		@include('_partial/flash_message')
+		@include('mahasiswas/form_pencarian')
 		@if(!empty($mahasiswa_list))
 			<table class="table">
 				<thead>
@@ -65,7 +66,7 @@
 		</div>
 		<div class="tombol-nav">
 			<div>
-				<a href="{{ url('create') }}" class="btn btn-primary">Tambah Mahasiswa</a>
+				<a href="{{ url('mahasiswa/create') }}" class="btn btn-primary">Tambah Mahasiswa</a>
 			</div>
 		</div>
 	</div>

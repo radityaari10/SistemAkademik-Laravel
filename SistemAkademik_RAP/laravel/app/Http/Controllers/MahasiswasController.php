@@ -162,6 +162,30 @@ class MahasiswasController extends Controller
 			return redirect('lihat_data_mahasiswa');
 		}
 
+		public function cari(Request $req){
+			$kata_kunci = trim($req->input('kata_kunci'));
+
+			if(!empty($kata_kunci)){
+				$jenis_kelamin = $req->input('jenis_kelamin');
+				$id_kelas = $req->input('id_kelas');
+
+				$query = Mahasiswa::where('nama', 'LIKE', '%'.$kata_kunci.'%');
+				(!empty($jenis_kelamin)) ? $query->JenisKelamin($jenis_kelamin) : '';
+				(!empty($id_kelas)) ? $query->Kelas($id_kelas) : '';
+				$mahasiswa_list = $query->paginate(2);
+				
+				$pagination = (!empty($jenis_kelamin)) ? $mahasiswa_list->appends(['jenis_kelamin'=>$jenis_kelamin]): '';
+				$pagination = (!empty($id_kelas)) ? $mahasiswa_list->appends(['jenis_kelamin'=>$id_kelas]): '';
+				$pagination = $mahasiswa_list->appends($req->except('page'));
+
+				$jumlah_mahasiswa = $mahasiswa_list->total();
+				return view('mahasiswas/lihat_data_mahasiswa', compact('mahasiswa_list', 'kata_kunci', 'pagination', 'jumlah_mahasiswa',
+					'id_kelas', 'jenis_kelamin'));
+			}
+
+			return redirect('lihat_data_mahasiswa');
+		}
+
 		// public function store(Request $req){
 		// 	$mahasiswa = New Mahasiswa;
 		// 	$mahasiswa->nim = $req->nim;

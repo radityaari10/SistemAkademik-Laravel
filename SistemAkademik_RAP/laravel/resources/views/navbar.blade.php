@@ -26,6 +26,20 @@
 						<li><a href="{{url('lihat_data_mahasiswa')}}">Data Mahasiswa</a></li>
 				@endif
 
+				@if(!empty($halaman) && $halaman =='kelas')
+						<li class="active"><a href="{{url('kelas')}}">
+								Kelas<span class="sr-only">(current)</span></a></li>
+				@else
+						<li><a href="{{url('kelas')}}">Kelas</a></li>
+				@endif
+
+				@if(!empty($halaman) && $halaman =='hobi')
+						<li class="active"><a href="{{url('hobi')}}">
+								Hobi<span class="sr-only">(current)</span></a></li>
+				@else
+						<li><a href="{{url('hobi')}}">Hobi</a></li>
+				@endif
+
 				@if(!empty($halaman) && $halaman =='input_mahasiswa')
 						<li class="active"><a href="{{url('input_mahasiswa')}}">
 								Input Data Mahasiswa<span class="sr-only">(current)</span></a></li>

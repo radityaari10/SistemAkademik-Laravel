@@ -31,7 +31,14 @@ Route::get('create', 'MahasiswasController@create');
 
 // Tugas 21
 
+Route::get('mahasiswa/cari', 'MahasiswasController@cari');
+
 Route::resource('mahasiswa', 'MahasiswasController');
+
+
+Route::resource('kelas', 'KelasController')->parameters(['kelas'=>'kelas']);
+
+Route::resource('hobi', 'HobiController');
 
 
 // Route::get('mahasiswa/{mahasiswa}', 'MahasiswasController@show');

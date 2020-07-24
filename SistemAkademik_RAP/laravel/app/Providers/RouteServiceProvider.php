@@ -24,8 +24,17 @@ class RouteServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		parent::boot();
+		
 		Route::bind('mahasiswa', function($mahasiswa){
 			return \App\Mahasiswa::findOrFail($mahasiswa);
+		});
+
+		Route::bind('kelas', function($kelas){
+			return \App\Kelas::findOrFail($kelas);
+		});
+
+		Route::bind('hobi', function($hobi){
+			return \App\Hobi::findOrFail($hobi);
 		});
 	}
 
