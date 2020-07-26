@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@welcome');
+Route::get('/', 'MahasiswasController@welcome');
 
 Route::get('home', function () {
     return view('home');

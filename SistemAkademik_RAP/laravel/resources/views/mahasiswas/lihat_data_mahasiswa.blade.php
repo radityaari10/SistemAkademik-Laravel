@@ -38,14 +38,16 @@
 								<div class="box-button">
 									{{ link_to('mahasiswa/'.$mahasiswa->id, 'Detail', ['class' => 'btn btn-success btn-sm']) }}
 								</div>
-								<div class="box-button">
-									{{ link_to('mahasiswa/'.$mahasiswa->id.'/edit', 'Edit', ['class' => 'btn btn-warning btn-sm']) }}
-								</div>
-								<div class="box-button">
-									{!! Form::open(['method'=>'DELETE', 'action'=>['MahasiswasController@destroy', $mahasiswa->id]]) !!}
-									{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-									{!! Form::close() !!}
-								</div>
+								@if (Auth::check())		
+									<div class="box-button">
+										{{ link_to('mahasiswa/'.$mahasiswa->id.'/edit', 'Edit', ['class' => 'btn btn-warning btn-sm']) }}
+									</div>
+									<div class="box-button">
+										{!! Form::open(['method'=>'DELETE', 'action'=>['MahasiswasController@destroy', $mahasiswa->id]]) !!}
+										{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+										{!! Form::close() !!}
+									</div>
+								@endif
 							</td>
 						</tr>
 					@endforeach
@@ -64,11 +66,13 @@
 				{{ $mahasiswa_list->links() }}
 			</div>
 		</div>
-		<div class="tombol-nav">
-			<div>
-				<a href="{{ url('mahasiswa/create') }}" class="btn btn-primary">Tambah Mahasiswa</a>
+		@if (Auth::check())				
+			<div class="tombol-nav">
+				<div>
+					<a href="{{ url('mahasiswa/create') }}" class="btn btn-primary">Tambah Mahasiswa</a>
+				</div>
 			</div>
-		</div>
+		@endif
 	</div>
 @endsection
 

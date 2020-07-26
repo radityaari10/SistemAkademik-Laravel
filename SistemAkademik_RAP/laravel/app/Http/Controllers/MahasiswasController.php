@@ -14,6 +14,17 @@ use Session;
 
 class MahasiswasController extends Controller
 {
+		protected $request;
+
+		public function __construct(Request $req)
+		{
+				$this->request = $req;
+
+				$this->middleware('auth', ['except' => [
+					'index', 'show', 'lihat_data_mahasiswa', 'cari',
+				]]);
+		}
+
     public function data_mahasiswa(){
 			$halaman = 'data_mahasiswa';
 			return view('mahasiswas/data_mahasiswa', compact('halaman'));
@@ -26,12 +37,6 @@ class MahasiswasController extends Controller
 			return view('mahasiswas/lihat_data_mahasiswa', compact('halaman','mahasiswa_list', 'jumlah_mahasiswa'));
 		}
 		
-		protected $request;
-
-    public function __construct(Request $req)
-    {
-        $this->request = $req;
-    }
 
 		// Sebelum di rubah lihat_data mahasiswa
 

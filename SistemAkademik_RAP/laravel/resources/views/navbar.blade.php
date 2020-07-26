@@ -18,7 +18,7 @@
 				@else
 						<li><a href="{{url('data_mahasiswa')}}">Mahasiswa</a></li>
 				@endif
-
+				
 				@if(!empty($halaman) && $halaman =='lihat_data_mahasiswa')
 						<li class="active"><a href="{{url('lihat_data_mahasiswa')}}">
 								Data Mahasiswa<span class="sr-only">(current)</span></a></li>
@@ -26,41 +26,41 @@
 						<li><a href="{{url('lihat_data_mahasiswa')}}">Data Mahasiswa</a></li>
 				@endif
 
-				@if(!empty($halaman) && $halaman =='kelas')
-						<li class="active"><a href="{{url('kelas')}}">
-								Kelas<span class="sr-only">(current)</span></a></li>
-				@else
-						<li><a href="{{url('kelas')}}">Kelas</a></li>
+				@if (Auth::check())		
+					@if(!empty($halaman) && $halaman =='kelas')
+							<li class="active"><a href="{{url('kelas')}}">
+									Kelas<span class="sr-only">(current)</span></a></li>
+					@else
+							<li><a href="{{url('kelas')}}">Kelas</a></li>
+					@endif
 				@endif
 
-				@if(!empty($halaman) && $halaman =='hobi')
-						<li class="active"><a href="{{url('hobi')}}">
-								Hobi<span class="sr-only">(current)</span></a></li>
-				@else
-						<li><a href="{{url('hobi')}}">Hobi</a></li>
+				@if (Auth::check())					
+					@if(!empty($halaman) && $halaman =='hobi')
+							<li class="active"><a href="{{url('hobi')}}">
+									Hobi<span class="sr-only">(current)</span></a></li>
+					@else
+							<li><a href="{{url('hobi')}}">Hobi</a></li>
+					@endif
 				@endif
 
-				@if(!empty($halaman) && $halaman =='input_mahasiswa')
-						<li class="active"><a href="{{url('input_mahasiswa')}}">
-								Input Data Mahasiswa<span class="sr-only">(current)</span></a></li>
-				@else
-						<li><a href="{{url('input_mahasiswa')}}">Input Data Mahasiswa</a></li>
+				@if (Auth::check())						
+					@if(!empty($halaman) && $halaman =='create')
+							<li class="active"><a href="{{url('create')}}">
+									Input Data Mahasiswa (2)<span class="sr-only">(current)</span></a></li>
+					@else
+							<li><a href="{{url('create')}}">Input Data Mahasiswa (2)</a></li>
+					@endif
 				@endif
 
-				@if (!empty($halaman) && $halaman =='user')
-					<li class="active"><a href="{{url('user')}}">
-							User<span class="sr-only">(current)</span></a></li>
-				@else
-					<li><a href="{{url('user')}}">User</a></li>
+				@if (Auth::check() && Auth::user()->level=='admin')					
+					@if (!empty($halaman) && $halaman =='user')
+						<li class="active"><a href="{{url('user')}}">
+								User<span class="sr-only">(current)</span></a></li>
+					@else
+						<li><a href="{{url('user')}}">User</a></li>
+					@endif
 				@endif
-				
-				@if(!empty($halaman) && $halaman =='create')
-						<li class="active"><a href="{{url('create')}}">
-								Input Data Mahasiswa (2)<span class="sr-only">(current)</span></a></li>
-				@else
-						<li><a href="{{url('create')}}">Input Data Mahasiswa (2)</a></li>
-				@endif
-					
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -71,7 +71,6 @@
 								{!! Form::submit('LOGOUT', ['class'=>'btn btn-danger btn-sm']) !!}
 							{!! Form::close() !!}			
 						</div>
-						
 					</li>	
 				@else
 					<li class="nav-item">
@@ -83,3 +82,12 @@
 		</div>
 	</div>
 </nav>
+
+{{-- @if (Auth::check())
+					@if(!empty($halaman) && $halaman =='input_mahasiswa')
+							<li class="active"><a href="{{url('input_mahasiswa')}}">
+									Input Data Mahasiswa<span class="sr-only">(current)</span></a></li>
+					@else
+							<li><a href="{{url('input_mahasiswa')}}">Input Data Mahasiswa</a></li>
+					@endif						
+				@endif --}}
