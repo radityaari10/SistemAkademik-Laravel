@@ -46,6 +46,13 @@
 				@else
 						<li><a href="{{url('input_mahasiswa')}}">Input Data Mahasiswa</a></li>
 				@endif
+
+				@if (!empty($halaman) && $halaman =='user')
+					<li class="active"><a href="{{url('user')}}">
+							User<span class="sr-only">(current)</span></a></li>
+				@else
+					<li><a href="{{url('user')}}">User</a></li>
+				@endif
 				
 				@if(!empty($halaman) && $halaman =='create')
 						<li class="active"><a href="{{url('create')}}">
@@ -55,10 +62,24 @@
 				@endif
 					
 			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Login</a></li>
-				<li class="dropdown"></li>
+				@if (Auth::check())
+					<li>{{ 'Hai '.Auth::user()->name }}
+						<div class="box-button">
+							{!! Form::open(['method'=>'POST', 'url'=>'logout']) !!}
+								{!! Form::submit('LOGOUT', ['class'=>'btn btn-danger btn-sm']) !!}
+							{!! Form::close() !!}			
+						</div>
+						
+					</li>	
+				@else
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('login') }}">{{_('Login')}}</a>
+					</li>
+				@endif
 			</ul>
+
 		</div>
 	</div>
 </nav>

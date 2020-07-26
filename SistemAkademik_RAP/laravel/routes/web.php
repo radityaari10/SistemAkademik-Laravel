@@ -23,6 +23,10 @@ Route::get('data_mahasiswa', 'MahasiswasController@data_mahasiswa');
 
 Route::get('lihat_data_mahasiswa', 'MahasiswasController@lihat_data_mahasiswa');
 
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('lihat_data_mahasiswa2', 'MahasiswasController@lihat_data_mahasiswa2');
 
 Route::get('input_mahasiswa', 'MahasiswasController@input_mahasiswa');
@@ -40,6 +44,7 @@ Route::resource('kelas', 'KelasController')->parameters(['kelas'=>'kelas']);
 
 Route::resource('hobi', 'HobiController');
 
+Route::resource('user', 'UserController');
 
 // Route::get('mahasiswa/{mahasiswa}', 'MahasiswasController@show');
 
@@ -107,4 +112,6 @@ Route::get('collection_tojson', 'MahasiswasController@collection_tojson');
 // Jobsheet 10
 
 Route::get('date_mutator', 'MahasiswasController@date_mutator');
+
+
 
