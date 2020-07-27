@@ -3,6 +3,8 @@
 @section('main')
 	<div id="mahasiswa">
 		<h2>Data Mahasiswa</h2>
+		<a href="cetak_pdf" class="btn btn-primary" target="_blank">CETAK LAPORAN</a>
+		<a href="export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 		@include('_partial/flash_message')
 		@include('mahasiswas/form_pencarian')
 		@if(!empty($mahasiswa_list))

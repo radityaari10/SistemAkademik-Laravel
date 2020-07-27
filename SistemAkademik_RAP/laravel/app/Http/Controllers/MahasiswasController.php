@@ -11,7 +11,11 @@ use App\Hobi;
 use App\Http\Requests\MahasiswaRequest;
 use Storage;
 use Session;
-
+use App\Mail\sistem_akademik_email;
+use Illuminate\Support\Facades\Mail;
+use PDF;
+use App\Exports\MahasiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
 class MahasiswasController extends Controller
 {
 		protected $request;
@@ -23,6 +27,13 @@ class MahasiswasController extends Controller
 				$this->middleware('auth', ['except' => [
 					'index', 'show', 'lihat_data_mahasiswa', 'cari',
 				]]);
+		}
+
+		public function welcome(){
+			$halaman = 'lihat_data_mahasiswa';
+			$mahasiswa_list = Mahasiswa::orderBy('nim', 'asc')->Paginate(3);
+			$jumlah_mahasiswa = Mahasiswa::count();
+			return view('mahasiswas/lihat_data_mahasiswa', compact('halaman','mahasiswa_list', 'jumlah_mahasiswa'));
 		}
 
     public function data_mahasiswa(){
@@ -191,6 +202,22 @@ class MahasiswasController extends Controller
 			return redirect('lihat_data_mahasiswa');
 		}
 
+		public function email(){
+			Mail::to("raditya_penerima@polines.ac.id")->send(new sistem_akademik_email());
+
+			return "Email telah terkirim";
+		}
+
+		public function cetak_pdf(){
+			$mahasiswa_list = Mahasiswa::all();
+
+			$pdf = PDF::loadview('mahasiswas/mahasiswa_pdf', ['mahasiswa_list'=>$mahasiswa_list]);
+			return $pdf->download('laporan-mahasiswa.pdf');
+		}
+
+		public function export_excel(){
+			return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
+		}
 		// public function store(Request $req){
 		// 	$mahasiswa = New Mahasiswa;
 		// 	$mahasiswa->nim = $req->nim;

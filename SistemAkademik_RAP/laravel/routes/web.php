@@ -13,8 +13,8 @@
 
 Route::get('/', 'MahasiswasController@welcome');
 
-Route::get('home', function () {
-    return view('home');
+Route::get('/home', function () {
+    return redirect('/');
 });
 
 
@@ -25,7 +25,7 @@ Route::get('lihat_data_mahasiswa', 'MahasiswasController@lihat_data_mahasiswa');
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('lihat_data_mahasiswa2', 'MahasiswasController@lihat_data_mahasiswa2');
 
@@ -38,6 +38,12 @@ Route::get('create', 'MahasiswasController@create');
 Route::get('mahasiswa/cari', 'MahasiswasController@cari');
 
 Route::resource('mahasiswa', 'MahasiswasController');
+
+Route::get('email', 'MahasiswasController@email');
+
+Route::get('cetak_pdf', 'MahasiswasController@cetak_pdf');
+
+Route::get('export_excel', 'MahasiswasController@export_excel');
 
 
 Route::resource('kelas', 'KelasController')->parameters(['kelas'=>'kelas']);

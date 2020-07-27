@@ -49,7 +49,7 @@
 							<li class="active"><a href="{{url('create')}}">
 									Input Data Mahasiswa (2)<span class="sr-only">(current)</span></a></li>
 					@else
-							<li><a href="{{url('create')}}">Input Data Mahasiswa (2)</a></li>
+							<li><a href="{{url('create')}}">Input Data Mahasiswa</a></li>
 					@endif
 				@endif
 
