@@ -2,7 +2,7 @@
 
 @section('main')
   <div id="hobi">
-    <h2>Kelas</h2>
+    <h2>Hobi</h2>
     @include('_partial.flash_message')
     
     @if (count($hobi_list)>0)
